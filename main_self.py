@@ -11,5 +11,16 @@ class Main:
         self.display_surface=pygame.display.set_mode((self.settings['window_width'],self.settings['window_height']))
         pygame.display.set_caption('Snake')
 
+    def run(self):
+        while True:            
+            for event in pygame.event.get():
+                if event.type==pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            # update surface
+            pygame.display.update()
+
 if __name__=='__main__':
     main=Main()
+    main.run()
