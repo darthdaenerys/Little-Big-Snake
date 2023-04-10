@@ -10,9 +10,14 @@ class Main:
 
         self.display_surface=pygame.display.set_mode((self.settings['window_width'],self.settings['window_height']))
         pygame.display.set_caption('Snake')
+        self.game=Game(self.settings)
+        self.clock=pygame.time.Clock()
 
     def run(self):
-        while True:            
+        while True:
+            self.clock.tick(self.game.difficulty)
+            
+            self.game.run(self.display_surface)
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     pygame.quit()
