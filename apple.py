@@ -9,3 +9,6 @@ class Apple:
 
     def draw(self,display_surface:pygame.Surface):
         display_surface.blit(self.surface,self.rect)
+    
+    def update(self,display_surface,snake):
+        self.draw(display_surface)
