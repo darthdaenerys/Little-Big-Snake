@@ -1,4 +1,15 @@
 {
     "window_width":1280,
-    "window_height":704
+    "window_height":704,
+    "pixels":32,
+    "bg_primary":[
+        156,
+        210,
+        54
+    ],
+    "bg_secondary":[
+        147,
+        203,
+        57
+    ]
 }
