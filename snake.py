@@ -16,3 +16,6 @@ class Snake:
         self.settings=settings
         self.xhead=random.randrange(0,settings['window_width'],settings['pixels'])
         self.yhead=random.randrange(0,settings['window_height'],settings['pixels'])
+
+    def draw(self,display_surface):
+        rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
