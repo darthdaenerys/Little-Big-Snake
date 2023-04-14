@@ -13,6 +13,8 @@ class SnakeBody:
 class Snake:
     def __init__(self,settings):
         self.direction='None'
+        self.speed=settings['pixels']
+        self.delta=settings['skin_gradient_roughness']
         self.settings=settings
         self.xhead=random.randrange(0,settings['window_width'],settings['pixels'])
         self.yhead=random.randrange(0,settings['window_height'],settings['pixels'])
