@@ -1,9 +1,10 @@
 import pygame
+from snake import Snake
 
 class Game:
     def __init__(self,settings):
         self.settings=settings
-        self.score=0
+        self.snake=Snake(settings)
 
     def draw(self,display_surface):
         display_surface.fill(self.settings['bg_primary'])
@@ -15,3 +16,4 @@ class Game:
     
     def run(self,display_surface):
         self.draw(display_surface)
+        self.snake.update(display_surface)
