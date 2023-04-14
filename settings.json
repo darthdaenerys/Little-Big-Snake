@@ -11,5 +11,16 @@
         147,
         203,
         57
-    ]
+    ],
+    "apple_colour":[
+        255,
+        0,
+        0
+    ],
+    "skin_colour":[
+        45,
+        12,
+        28
+    ],
+    "skin_gradient_roughness":50
 }
