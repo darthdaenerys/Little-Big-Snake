@@ -25,6 +25,8 @@ class Snake:
             self.direction='right'
         elif (keys[pygame.K_LEFT] or keys[pygame.K_a]) and not self.direction=='right' and self.previous_direction!='right':
             self.direction='left'
+        elif (keys[pygame.K_UP] or keys[pygame.K_w]) and not self.direction=='down' and self.previous_direction!='down':
+            self.direction='up'
 
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
