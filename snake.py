@@ -19,5 +19,10 @@ class Snake:
         self.xhead=random.randrange(0,settings['window_width'],settings['pixels'])
         self.yhead=random.randrange(0,settings['window_height'],settings['pixels'])
 
+    def input(self):
+        keys=pygame.key.get_pressed()
+        if (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and not self.direction=='left' and self.previous_direction!='left':
+            self.direction='right'
+
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
