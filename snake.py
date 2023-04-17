@@ -23,12 +23,19 @@ class Snake:
         keys=pygame.key.get_pressed()
         if (keys[pygame.K_RIGHT] or keys[pygame.K_d]) and not self.direction=='left' and self.previous_direction!='left':
             self.direction='right'
+            self.previous_direction='None'
         elif (keys[pygame.K_LEFT] or keys[pygame.K_a]) and not self.direction=='right' and self.previous_direction!='right':
             self.direction='left'
+            self.previous_direction='None'
         elif (keys[pygame.K_UP] or keys[pygame.K_w]) and not self.direction=='down' and self.previous_direction!='down':
             self.direction='up'
+            self.previous_direction='None'
         elif (keys[pygame.K_DOWN] or keys[pygame.K_s]) and not self.direction=='up' and self.previous_direction!='up':
             self.direction='down'
+            self.previous_direction='None'
+        elif keys[pygame.K_p] and self.previous_direction=='None':
+            self.previous_direction=self.direction
+            self.direction='None'
 
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
