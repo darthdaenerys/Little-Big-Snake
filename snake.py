@@ -39,3 +39,6 @@ class Snake:
 
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
+
+    def update(self,display_surface):
+        self.draw(display_surface)
