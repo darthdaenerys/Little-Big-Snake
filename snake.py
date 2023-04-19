@@ -18,6 +18,7 @@ class Snake:
         self.settings=settings
         self.xhead=random.randrange(0,settings['window_width'],settings['pixels'])
         self.yhead=random.randrange(0,settings['window_height'],settings['pixels'])
+        self.body_colour=random.choice(settings['skin_colour'])
 
     def input(self):
         keys=pygame.key.get_pressed()
