@@ -16,6 +16,7 @@ class Snake:
         self.speed=settings['pixels']
         self.delta=settings['skin_gradient_roughness']
         self.settings=settings
+        self.previous_direction=None
         self.xhead=random.randrange(0,settings['window_width'],settings['pixels'])
         self.yhead=random.randrange(0,settings['window_height'],settings['pixels'])
         self.body_colour=random.choice(settings['skin_colour'])
@@ -37,6 +38,16 @@ class Snake:
         elif keys[pygame.K_p] and self.previous_direction=='None':
             self.previous_direction=self.direction
             self.direction='None'
+
+    def move_head(self):
+        if self.direction=='up':
+            self.yhead-=self.speed
+        elif self.direction=='down':
+            self.yhead+=self.speed
+        elif self.direction=='right':
+            self.xhead+=self.speed
+        elif self.direction=='left':
+            self.xhead-=self.speed
 
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
