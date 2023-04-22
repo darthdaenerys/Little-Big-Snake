@@ -13,6 +13,7 @@ class SnakeBody:
 class Snake:
     def __init__(self,settings):
         self.direction='None'
+        self.bodies=[]
         self.speed=settings['pixels']
         self.delta=settings['skin_gradient_roughness']
         self.settings=settings
