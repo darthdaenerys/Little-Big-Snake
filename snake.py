@@ -56,4 +56,8 @@ class Snake:
         pygame.draw.rect(display_surface,self.body_colour,rect)
 
     def update(self,display_surface):
+        self.input()
+        if self.direction!='None':
+            self.move_body()
+            self.move_head()
         self.draw(display_surface)
