@@ -54,6 +54,8 @@ class Snake:
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
         rect=rect.inflate(6,6)
         pygame.draw.rect(display_surface,self.body_colour,rect)
+        for body in self.bodies:
+            body.draw(display_surface)
 
     def update(self,display_surface):
         self.input()
