@@ -50,6 +50,9 @@ class Snake:
         elif self.direction=='left':
             self.xhead-=self.speed
 
+    def wall_collision(self):
+        return self.xhead<0 or self.xhead>=self.settings['window_width'] or self.yhead<0 or self.yhead>self.settings['window_height']
+
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
         rect=rect.inflate(6,6)
