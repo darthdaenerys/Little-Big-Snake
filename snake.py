@@ -55,6 +55,12 @@ class Snake:
     
     def wall_collision(self):
         return self.xhead<0 or self.xhead>=self.settings['window_width'] or self.yhead<0 or self.yhead>self.settings['window_height']
+    
+    def snake_collision(self):
+        for body in self.bodies:
+            if body.xpos==self.xhead and body.ypos==self.yhead:
+                return True
+        return False
 
     def draw(self,display_surface):
         rect=pygame.rect.Rect(self.xhead,self.yhead,self.settings['pixels'],self.settings['pixels'])
