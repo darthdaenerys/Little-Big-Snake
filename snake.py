@@ -50,6 +50,9 @@ class Snake:
         elif self.direction=='left':
             self.xhead-=self.speed
 
+    def apple_collision(self,apple):
+        return self.xhead==apple.xpos and self.yhead==apple.ypos
+    
     def wall_collision(self):
         return self.xhead<0 or self.xhead>=self.settings['window_width'] or self.yhead<0 or self.yhead>self.settings['window_height']
 
