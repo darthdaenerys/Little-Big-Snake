@@ -8,7 +8,9 @@ class Game:
         self.snake=Snake(settings)
         self.apple=Apple(settings,self.snake.bodies)
         self.score=0
-        self.font=pygame.font.SysFont('subatomic.ttf',50,bold=True)
+        self.flag=1
+        self.difficulty=8
+        
     def draw(self,display_surface):
         display_surface.fill(self.settings['bg_primary'])
         pixels=self.settings['pixels']
