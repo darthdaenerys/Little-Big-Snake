@@ -10,7 +10,8 @@ class Game:
         self.score=0
         self.flag=1
         self.difficulty=8
-        
+        self.font=pygame.font.SysFont('subatomic.ttf',50,bold=True)
+
     def draw(self,display_surface):
         display_surface.fill(self.settings['bg_primary'])
         pixels=self.settings['pixels']
