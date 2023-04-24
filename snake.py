@@ -49,6 +49,12 @@ class Snake:
             self.xhead+=self.speed
         elif self.direction=='left':
             self.xhead-=self.speed
+    
+    def move_body(self):
+        for body_idx in range(len(self.bodies)-1,-1,-1):
+            if body_idx==0:
+                self.bodies[body_idx].xpos=self.xhead
+                self.bodies[body_idx].ypos=self.yhead
 
     def apple_collision(self,apple):
         return self.xhead==apple.xpos and self.yhead==apple.ypos
