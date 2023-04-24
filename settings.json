@@ -22,5 +22,6 @@
         12,
         28
     ],
+    "skin_gradient_roughness":50,
     "difficulty_change_rate":5
 }
