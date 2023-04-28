@@ -61,6 +61,7 @@ class Snake:
     
     def add_body(self):
         body=SnakeBody(self.settings['pixels'],self.xhead,self.yhead,self.body_colour)
+        self.bodies.append(body)
     
     def apple_collision(self,apple):
         return self.xhead==apple.xpos and self.yhead==apple.ypos
