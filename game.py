@@ -24,6 +24,9 @@ class Game:
         font_surface=self.font.render(f'Score: {self.score}',True,(255,255,255))
         display_surface.blit(font_surface,(10,10))
     
+    def game_over(self,display_surface):
+        font_surface=self.font.render(f'GAME OVER',True,(255,255,255))
+
     def run(self,display_surface):
         self.draw(display_surface)
         self.snake.update(display_surface)
