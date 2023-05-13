@@ -11,6 +11,8 @@ class Game:
         self.flag=1
         self.difficulty=8
         self.font=pygame.font.SysFont('subatomic.ttf',50,bold=True)
+        self.eat_sound=pygame.mixer.Sound(os.path.join('sfx','sip-short-soft-soup.wav'))
+        self.game_over_sound=pygame.mixer.Sound(os.path.join('sfx','game-over-arcade.wav'))
 
     def draw(self,display_surface):
         display_surface.fill(self.settings['bg_primary'])
