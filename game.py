@@ -1,4 +1,4 @@
-import pygame
+import pygame,os
 from apple import Apple
 from snake import Snake
 
