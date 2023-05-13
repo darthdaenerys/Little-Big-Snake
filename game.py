@@ -30,5 +30,8 @@ class Game:
     def run(self,display_surface):
         self.draw(display_surface)
         self.snake.update(display_surface)
+        if self.snake.direction!='None':
+            if self.snake.wall_collision() or self.snake.snake_collision():
+                self.game_over(display_surface)
         self.apple.update(display_surface,self.snake)
         self.render_font(display_surface)
