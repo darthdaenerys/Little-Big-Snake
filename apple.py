@@ -18,6 +18,8 @@ class Apple:
                 if body.xpos==self.xpos and body.ypos==self.ypos:
                     flag=False
                     break
+            if flag: break
+        self.rect.topleft=(self.xpos,self.ypos)
 
     def draw(self,display_surface:pygame.Surface):
         display_surface.blit(self.surface,self.rect)
