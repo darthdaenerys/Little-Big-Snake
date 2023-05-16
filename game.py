@@ -28,7 +28,11 @@ class Game:
     
     def game_over(self,display_surface):
         font_surface=self.font.render(f'GAME OVER',True,(255,255,255))
-
+        font_rect=font_surface.get_rect()
+        font_rect.center=(self.settings['window_width']//2,self.settings['window_height']//2)
+        display_surface.blit(font_surface,font_rect)
+        pygame.display.update()
+    
     def run(self,display_surface):
         self.draw(display_surface)
         self.snake.update(display_surface)
