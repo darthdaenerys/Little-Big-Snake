@@ -1,0 +1,32 @@
+{
+    "window_width": 1280,
+    "window_height": 704,
+    "pixels": 32,
+    "bg_primary": [
+        156,
+        210,
+        54
+    ],
+    "bg_secondary": [
+        147,
+        203,
+        57
+    ],
+    "apple_colour": [
+        255,
+        0,
+        0
+    ],
+    "skin_colour": [
+        45,
+        12,
+        28
+    ],
+    "skin_gradient_roughness": 50,
+    "best_score": 12,
+    "load_pretrained": true,
+    "optimizer": "adam",
+    "loss": "mse",
+    "learning_rate": 0.001,
+    "games": 115
+}
