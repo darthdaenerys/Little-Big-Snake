@@ -32,6 +32,9 @@ class Game:
         font_rect.center=(self.settings['window_width']//2,self.settings['window_height']//2)
         display_surface.blit(font_surface,font_rect)
         pygame.display.update()
+        self.game_over_sound.play()
+        pygame.time.delay(1000)
+        self.__init__(self.settings)
     
     def run(self,display_surface):
         self.draw(display_surface)
