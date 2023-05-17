@@ -22,6 +22,9 @@ class Main:
                 if event.type==pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+            if self.game.score%self.settings['difficulty_change_rate']==0 and self.game.flag:
+                self.game.difficulty+=1
+                self.game.flag=0
 
             # update surface
             pygame.display.update()
