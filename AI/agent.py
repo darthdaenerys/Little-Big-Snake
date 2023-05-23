@@ -55,3 +55,14 @@ class Agent:
             pred=self.neuralnetwork.model.predict(state,verbose=0)[0]
             move[np.argmax(pred,axis=0)]=1
         return move
+
+    def train_short_memory(self,state,action,reward,next_state,game_over):
+        self.neuralnetwork.train_step(state,action,reward,next_state,game_over)
+
+    def train_long_memory(self):
+        if len(self.memory)>self.batch_size:
+            batch=random.sample(self.memory,self.batch_size)
+        else:
+            batch=self.memory
+        states, actions, rewards, next_states, game_overs = zip(*batch)
+        self.neuralnetwork.train_step(states, actions, rewards, next_states, game_overs)
