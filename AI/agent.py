@@ -66,3 +66,19 @@ class Agent:
             batch=self.memory
         states, actions, rewards, next_states, game_overs = zip(*batch)
         self.neuralnetwork.train_step(states, actions, rewards, next_states, game_overs)
+
+    def get_command(self,action):
+        if action[0]:
+            return 'left'
+        elif action[1]:
+            return 'straight'
+        else:
+            return 'right'
+
+    def record_statistics(self,scores_data):
+        self.score_dataframe['Score'].append(scores_data)
+    
+    def update_model(self,score):
+        if score>self.best_score:
+            self.best_score=score
+            self.neuralnetwork.save_model()
