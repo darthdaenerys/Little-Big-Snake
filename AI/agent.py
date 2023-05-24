@@ -44,6 +44,60 @@ class Agent:
             loss=self.settings['loss']
         )
 
+    def get_state(self):
+        '''
+            returns 13 state values for the snake: [
+            danger_left, danger_straight, danger_right,danger_straightright,danger_straightleft,
+            direction_up, direction_right, direction_down, direction_left,
+            food_up, food_right, food_down, food_left
+        ]
+        '''
+        snake=self.env.snake
+        apple=self.env.apple
+        direction_up=snake.direction=='up'
+        direction_down=snake.direction=='down'
+        direction_right=snake.direction=='right'
+        direction_left=snake.direction=='left'
+
+        left_square_x=snake.xhead-self.settings['pixels']
+        left_square_y=snake.yhead
+        right_square_x=snake.xhead+self.settings['pixels']
+        right_square_y=snake.yhead
+        up_square_x=snake.xhead
+        up_square_y=snake.yhead-self.settings['pixels']
+        down_square_x=snake.xhead
+        down_square_y=snake.yhead+self.settings['pixels']    
+
+        danger_straight=(
+            direction_left and (snake.wall_collision(left_square_x,left_square_y) or snake.body_collision(left_square_x,left_square_y)) or
+            direction_up and (snake.wall_collision(up_square_x,up_square_y) or snake.body_collision(up_square_x,up_square_y)) or
+            direction_right and (snake.wall_collision(right_square_x,right_square_y) or snake.body_collision(right_square_x,right_square_y)) or
+            direction_down and (snake.wall_collision(down_square_x,down_square_y) or snake.body_collision(down_square_x,down_square_y))
+        )
+        danger_left=(
+            direction_left and (snake.wall_collision(down_square_x,down_square_y) or snake.body_collision(down_square_x,down_square_y)) or
+            direction_up and (snake.wall_collision(left_square_x,left_square_y) or snake.body_collision(left_square_x,left_square_y)) or
+            direction_right and (snake.wall_collision(up_square_x,up_square_y) or snake.body_collision(up_square_x,up_square_y)) or
+            direction_down and (snake.wall_collision(right_square_x,right_square_y) or snake.body_collision(right_square_x,right_square_y))
+        )
+        danger_right=(
+            direction_left and (snake.wall_collision(up_square_x,up_square_y) or snake.body_collision(up_square_x,up_square_y)) or
+            direction_up and (snake.wall_collision(right_square_x,right_square_y) or snake.body_collision(right_square_x,right_square_y)) or
+            direction_right and (snake.wall_collision(down_square_x,down_square_y) or snake.body_collision(down_square_x,down_square_y)) or
+            direction_down and (snake.wall_collision(left_square_x,left_square_y) or snake.body_collision(left_square_x,left_square_y))
+        )
+
+        food_left=apple.xpos<snake.xhead
+        food_right=apple.xpos>snake.xhead
+        food_up=apple.ypos<snake.yhead
+        food_down=apple.ypos>snake.yhead
+
+        return np.array([
+            danger_left, danger_straight, danger_right,
+            direction_up, direction_right, direction_down, direction_left,
+            food_up, food_right, food_down, food_left
+        ])
+
     # tradeoff: exploration / exploitation
     def get_action(self,state):
         self.epsilon=50-self.games
@@ -66,6 +120,9 @@ class Agent:
             batch=self.memory
         states, actions, rewards, next_states, game_overs = zip(*batch)
         self.neuralnetwork.train_step(states, actions, rewards, next_states, game_overs)
+    
+    def remember(self,state,action,reward,next_state,game_over):
+        self.memory.append((state,action,reward,next_state,game_over))
 
     def get_command(self,action):
         if action[0]:
