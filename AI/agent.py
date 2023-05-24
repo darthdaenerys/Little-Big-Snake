@@ -139,3 +139,25 @@ class Agent:
         if score>self.best_score:
             self.best_score=score
             self.neuralnetwork.save_model()
+    
+    def train(self):
+        while True:
+            old_state=self.get_state()
+            action=self.get_action(old_state)
+            total_score=0
+            command=self.get_command(action)
+            game_over,reward,score=self.env.step(command,self,self.games,self.neuralnetwork)
+            new_state=self.get_state()
+            self.train_short_memory(old_state,action,reward,new_state,game_over)
+            self.remember(old_state,action,reward,new_state,game_over)
+            self.iterations+=1
+            if game_over:
+                self.env.reset()
+                self.train_long_memory()
+
+                total_score+=score
+                self.record_statistics(score)
+                self.iterations=0
+                self.games+=1
+                self.update_model(score)
+            pygame.display.update()
