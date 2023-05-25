@@ -28,3 +28,29 @@ class NeuralNet(Model):
             self.optimizer=tf.keras.optimizers.Adam(learning_rate=self.learning_rate)
         else:
             self.optimizer=tf.keras.optimizers.RMSprop(learning_rate=self.learning_rate)
+    
+    def train_step(self,state,action,reward,next_state,game_over):
+        state=np.array(state,dtype=np.float32)
+        action=np.array(action,dtype=np.float32)
+        reward=np.array(reward,dtype=np.float32)
+        next_state=np.array(next_state,dtype=np.float32)
+        if len(state.shape)==1:
+            state=np.expand_dims(state,axis=0)
+            action=np.expand_dims(action,axis=0)
+            reward=np.expand_dims(reward,axis=0)
+            next_state=np.expand_dims(next_state,axis=0)
+            game_over=np.expand_dims(game_over,axis=0)
+        
+        with tf.GradientTape() as tape:
+            pred=self.model(state,training=True)
+            target=np.copy(pred)
+
+            for idx in range(len(game_over)):
+                Q_new=reward[idx]
+                if not game_over[idx]:
+                    Q_new=reward[idx]+self.gamma*np.max(self.model(np.expand_dims(next_state[idx],axis=0),training=True))
+                target[idx][np.argmax(action[idx]).item()] = Q_new
+            loss = self.loss(target, pred)
+
+        grad = tape.gradient(loss, self.model.trainable_variables) 
+        self.optimizer.apply_gradients(zip(grad, self.model.trainable_variables))
