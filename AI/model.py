@@ -54,3 +54,8 @@ class NeuralNet(Model):
 
         grad = tape.gradient(loss, self.model.trainable_variables) 
         self.optimizer.apply_gradients(zip(grad, self.model.trainable_variables))
+
+    def save_model(self):
+        if not os.path.exists('models'):
+            os.mkdir('models')
+        tf.keras.models.save_model(model=self.model,filepath=os.path.join('models','snakeAi.h5'))
