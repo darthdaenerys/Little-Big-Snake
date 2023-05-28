@@ -23,10 +23,10 @@
         28
     ],
     "skin_gradient_roughness": 50,
-    "best_score": 12,
+    "best_score": 11,
     "load_pretrained": true,
     "optimizer": "adam",
     "loss": "mse",
     "learning_rate": 0.001,
-    "games": 115
+    "games": 109
 }

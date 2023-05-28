@@ -46,7 +46,7 @@ class Agent:
 
     def get_state(self):
         '''
-            returns 13 state values for the snake: [
+            returns 11 state values for the snake: [
             danger_left, danger_straight, danger_right,danger_straightright,danger_straightleft,
             direction_up, direction_right, direction_down, direction_left,
             food_up, food_right, food_down, food_left
